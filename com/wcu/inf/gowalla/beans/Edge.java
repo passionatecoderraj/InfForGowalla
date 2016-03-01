@@ -8,8 +8,25 @@ package com.wcu.inf.gowalla.beans;
  *
  */
 public class Edge {
+	private int id;
 	private int from;
 	private int to;
+
+	public Edge() {
+
+	}
+
+	public Edge(int id, int from, int to) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+	}
+
+	public Edge(int from) {
+		super();
+		this.from = from;
+	}
 
 	public Edge(int from, int to) {
 		super();
@@ -31,6 +48,14 @@ public class Edge {
 
 	public void setTo(int to) {
 		this.to = to;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override

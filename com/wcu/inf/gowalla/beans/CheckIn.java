@@ -13,6 +13,14 @@ public class CheckIn {
 	private int locationId;
 	private String datetime;
 
+	private int locationCount;
+
+	public CheckIn(int nodeId, int locationCount) {
+		super();
+		this.nodeId = nodeId;
+		this.locationCount = locationCount;
+	}
+
 	public CheckIn(int nodeId, int locationId, String datetime) {
 		super();
 		this.nodeId = nodeId;
@@ -42,6 +50,14 @@ public class CheckIn {
 
 	public void setLocationId(int locationId) {
 		this.locationId = locationId;
+	}
+
+	public int getLocationCount() {
+		return locationCount;
+	}
+
+	public void setLocationCount(int locationCount) {
+		this.locationCount = locationCount;
 	}
 
 	@Override

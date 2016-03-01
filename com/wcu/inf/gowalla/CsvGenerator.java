@@ -18,7 +18,7 @@ import com.wcu.inf.util.DbConnection;
  * @author Raj
  *
  */
-public class CsvMain {
+public class CsvGenerator {
 
 	java.sql.Connection con = DbConnection.getConnection();
 
@@ -28,7 +28,7 @@ public class CsvMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		CsvMain obj = new CsvMain();
+		CsvGenerator obj = new CsvGenerator();
 		// Set<Integer> nodes = FilesReader.getNodesFromFile();
 		// obj.generateNodes(nodes);
 		// List<Edge> edges = FilesReader.getEdgesFromFile();

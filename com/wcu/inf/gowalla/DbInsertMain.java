@@ -17,7 +17,7 @@ import com.wcu.inf.util.DbConnection;
  * @author Raj
  *
  */
-public class Main {
+public class DbInsertMain {
 
 	java.sql.Connection con = DbConnection.getConnection();
 
@@ -25,7 +25,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Main obj = new Main();
+		DbInsertMain obj = new DbInsertMain();
 		// Set<Integer> nodes = FilesReader.getNodesFromFile();
 		// obj.insertNodes(nodes);
 		List<Edge> edges = FilesReader.getEdgesFromFile();
