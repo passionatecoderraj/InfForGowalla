@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.wcu.inf.gowalla.beans.CheckIn;
@@ -111,6 +113,37 @@ public class FilesReader {
 
 		System.out.println(list.size());
 		return list;
+	}
+
+	public static Map<Integer, List<CheckIn>> getCheckInsByNodeIdFromFile() {
+		Map<Integer, List<CheckIn>> map = new HashMap<>();
+
+		List<CheckIn> list = new ArrayList<CheckIn>();
+		CheckIn obj;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(FILEPATH + "Gowalla_totalCheckins.txt"));
+			if (br != null) {
+				System.out.println("Reading for CheckIns");
+			}
+			String sCurrentLine;
+			while ((sCurrentLine = br.readLine()) != null) {
+				String[] a = sCurrentLine.split("	");
+				obj = new CheckIn(Integer.parseInt(a[0]), Integer.parseInt(a[4]), convert(a[1]));
+				if (map.containsKey(obj.getNodeId())) {
+					map.get(obj.getNodeId()).add(obj);
+				} else {
+					list = new ArrayList<>();
+					list.add(obj);
+					map.put(obj.getNodeId(), list);
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Unknown error occured while loading file");
+			e.printStackTrace();
+		}
+
+		System.out.println(map.size());
+		return map;
 	}
 
 	public static String convert(String str) {

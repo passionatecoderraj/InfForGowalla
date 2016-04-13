@@ -6,6 +6,7 @@ package com.wcu.inf.gowalla;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.wcu.inf.gowalla.beans.CheckIn;
@@ -28,12 +29,14 @@ public class DbInsertMain {
 		DbInsertMain obj = new DbInsertMain();
 		// Set<Integer> nodes = FilesReader.getNodesFromFile();
 		// obj.insertNodes(nodes);
-		List<Edge> edges = FilesReader.getEdgesFromFile();
-		obj.insertEdgesInBatches(edges);
+		// List<Edge> edges = FilesReader.getEdgesFromFile();
+		// obj.insertEdgesInBatches(edges);
 		// Set<Location> locations = FilesReader.getLocationsFromFile();
 		// obj.insertLocationsInBatches(locations);
 		// List<CheckIn> list = FilesReader.getCheckInsFromFile();
 		// obj.insertCheckInsInBatches(list);
+		Map<Integer, List<CheckIn>> map = FilesReader.getCheckInsByNodeIdFromFile();
+		System.out.println(map.get(376).size());
 	}
 
 	public void insertNodes(Set<Integer> nodes) {
