@@ -17,11 +17,17 @@ import com.wcu.inf.gowalla.beans.Location;
 /**
  * @author Raj
  *
+ *         This method is used to read data from files
  */
 public class FilesReader {
 
 	private final static String FILEPATH = "C:\\raj\\study\\univ\\research\\data\\gowalla\\";
 
+	/**
+	 * This method reads and return all nodes from file
+	 * 
+	 * @return
+	 */
 	public static Set<Integer> getNodesFromFile() {
 
 		Set<Integer> nodes = new HashSet<Integer>();
@@ -46,6 +52,11 @@ public class FilesReader {
 		return nodes;
 	}
 
+	/**
+	 * This method reads and returns all edges from file
+	 * 
+	 * @return
+	 */
 	public static List<Edge> getEdgesFromFile() {
 
 		List<Edge> edges = new ArrayList<Edge>();
@@ -69,6 +80,11 @@ public class FilesReader {
 		return edges;
 	}
 
+	/**
+	 * This method reads and returns all locations from file
+	 * 
+	 * @return
+	 */
 	public static Set<Location> getLocationsFromFile() {
 
 		Set<Location> locations = new HashSet<Location>();
@@ -92,6 +108,11 @@ public class FilesReader {
 		return locations;
 	}
 
+	/**
+	 * This method reads and returns all check-ins from file
+	 * 
+	 * @return
+	 */
 	public static List<CheckIn> getCheckInsFromFile() {
 
 		List<CheckIn> list = new ArrayList<CheckIn>();
@@ -115,6 +136,11 @@ public class FilesReader {
 		return list;
 	}
 
+	/**
+	 * This method reads and returns all Checks by NodeId from File
+	 * 
+	 * @return
+	 */
 	public static Map<Integer, List<CheckIn>> getCheckInsByNodeIdFromFile() {
 		Map<Integer, List<CheckIn>> map = new HashMap<>();
 
@@ -146,6 +172,12 @@ public class FilesReader {
 		return map;
 	}
 
+	/**
+	 * This is an utlity method is used while reading files
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public static String convert(String str) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(str);

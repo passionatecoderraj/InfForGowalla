@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.wcu.inf.gowalla;
+package com.wcua.inf.brightkite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,6 @@ import com.wcu.inf.gowalla.beans.NodeStat;
 /**
  * @author Raj
  *
- *	This class is used to perform update operations on NodeStats table
  */
 public class UpdateNodeStats {
 
@@ -32,7 +31,8 @@ public class UpdateNodeStats {
 		// obj.updateEdgeCount();
 		// obj.updateEdgeOfEdgeCount();
 		// obj.updateLocationCount();
-		obj.updateInfluenceLocationCount();
+		obj.updateInfluenceEdgeCount();
+		// obj.updateInfluenceLocationCount();
 		// Map<Integer, List<Integer>> map = new
 		// ReadFromDb().getAllEdgesInMap();
 		// System.out.println(map.get(376).size());
@@ -42,17 +42,11 @@ public class UpdateNodeStats {
 
 	}
 
-	/**
-	 * This is an utility method may not be used in programming logic
-	 */
 	public void updateEdgeCount() {
 		List<Edge> nodes = dbHelper.getAllEdges();
 		System.out.println(nodes.size());
 	}
 
-	/**
-	 * This method is used to update edge of edge count
-	 */
 	public void updateEdgeOfEdgeCount() {
 		List<Edge> list = dbHelper.getAllEdges();
 
@@ -79,18 +73,12 @@ public class UpdateNodeStats {
 		dbHelper.updateNodeStatsEdgeOfEdgeCountByNodeId(map);
 	}
 
-	/**
-	 * This method is used to update Location Count
-	 */
 	public void updateLocationCount() {
 		List<CheckIn> list = dbHelper.getLocationsCountByNodeId();
 		System.out.println(list.size());
 		dbHelper.updateNodeStatsLocationCountByNodeId(list);
 	}
 
-	/**
-	 * This method is used to update influenced edge count
-	 */
 	public void updateInfluenceEdgeCount() {
 		List<Integer> nodes = dbHelper.getAllNodes();
 		Map<Integer, List<Integer>> allEdges = dbHelper.getAllEdgesInMap();
@@ -98,7 +86,7 @@ public class UpdateNodeStats {
 
 		int count = 2;
 		int l, r, n = nodes.size();
-		l = 0;
+		l = 2894;
 		r = l + count;
 		while (r < n) {
 			System.out.println("Attempting : l=" + l + ",r=" + r);
@@ -114,10 +102,7 @@ public class UpdateNodeStats {
 			System.out.println("Inserted : l=" + l + ",r=" + n);
 		}
 	}
-	
-	/**
-	 * This is an utility method to update influenced edge count
-	 */
+
 	private void updateInfluenceEdgeCount(List<Integer> nodes, Map<Integer, List<Integer>> allEdges,
 			Map<Integer, List<CheckIn>> allCheckIns, int l, int r) {
 		NodeStat obj;
@@ -132,9 +117,6 @@ public class UpdateNodeStats {
 		dbHelper.updateNodeStatsInfEdgeCount(list);
 	}
 
-	/**
-	 * This is an utility method to update influenced edge count
-	 */
 	private void updateInfluenceEdgeCount(NodeStat node, Map<Integer, List<Integer>> allEdges,
 			Map<Integer, List<CheckIn>> allCheckIns) {
 		int friends_count = 0;
@@ -167,9 +149,6 @@ public class UpdateNodeStats {
 		node.setInfLocationCount(set.size());
 	}
 
-	/**
-	 * This method is used update influenced location count
-	 */
 	public void updateInfluenceLocationCount() {
 		List<Integer> nodes = dbHelper.getAllNodes();
 		Map<Integer, List<Integer>> allEdges = dbHelper.getAllEdgesInMap();
@@ -177,10 +156,10 @@ public class UpdateNodeStats {
 
 		int count = 2;
 		int l, r, n = nodes.size();
-		l = 10000;
+		l = 0;
 		r = l + count;
 		while (r < n) {
-			System.out.println("Attempti	ng : l=" + l + ",r=" + r);
+			System.out.println("Attempting : l=" + l + ",r=" + r);
 
 			updateInfluenceLocationCount(nodes, allEdges, allCheckIns, l, r);
 			System.out.println("Inserted : l=" + l + ",r=" + r);
@@ -194,9 +173,6 @@ public class UpdateNodeStats {
 		}
 	}
 
-	/**
-	 * This is an utility method to update influenced location count
-	 */
 	private void updateInfluenceLocationCount(List<Integer> nodes, Map<Integer, List<Integer>> allEdges,
 			Map<Integer, List<CheckIn>> allCheckIns, int l, int r) {
 		NodeStat obj;
@@ -212,9 +188,6 @@ public class UpdateNodeStats {
 		dbHelper.updateNodeStatsInfLocationCount(list);
 	}
 
-	/**
-	 * This is an utility method to update influenced location count
-	 */
 	private void updateInfluenceLocationCount(NodeStat node, Map<Integer, List<Integer>> allEdges,
 			Map<Integer, List<CheckIn>> allCheckIns) {
 		int location_count = 0;

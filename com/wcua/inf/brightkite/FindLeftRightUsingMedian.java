@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.wcu.inf.gowalla;
+package com.wcua.inf.brightkite;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,17 +12,22 @@ import com.wcu.inf.gowalla.beans.NodeStat;
 /**
  * @author Raj
  *
- * 
- *         This class implements the divide and conquer algorithm that is used
- *         to elimiate boundaries
  */
 public class FindLeftRightUsingMedian {
 
-	/**
-	 * This method assigns the ranks to each node
-	 * 
-	 * @param dbHelper
-	 */
+	public static void main(String args[]) {
+		ReadFromDb dbHelper = new ReadFromDb();
+		//insertOrUpdateDerivedNodeStats(dbHelper);
+		 assignRankToDerivedNodeStats(dbHelper);
+		// List<NodeStat> list = dbHelper.getAllNodeStatsBySortedEdgeCount();
+		// findLeftRightUsingMeanAndMedian(list, 0, list.size() - 500,
+		// Type.EdgeCount);
+		// List<NodeStat> list =
+		// dbHelper.getAllNodeStatsBySortedLocationCount();
+		// findLeftRightUsingMeanAndMedian(list, 0, list.size() - 1700,
+		// Type.LocationCount);
+	}
+
 	public static void assignRankToDerivedNodeStats(ReadFromDb dbHelper) {
 		List<NodeStat> list = null;
 		int n, median, rank;
@@ -101,11 +106,6 @@ public class FindLeftRightUsingMedian {
 
 	static int left, right;
 
-	/**
-	 * This method updates the Derived NodeStats table
-	 * 
-	 * @param dbHelper
-	 */
 	public static void insertOrUpdateDerivedNodeStats(ReadFromDb dbHelper) {
 		List<NodeStat> list = null;
 		int n;
@@ -130,20 +130,9 @@ public class FindLeftRightUsingMedian {
 		System.out.println("me1=" + minEdgeCount + ",me2=" + maxEdgeCount);
 		System.out.println("ml1=" + minLocationCount + ",ml2=" + maxLocationCount);
 
-		// dbHelper.insertOrUpdateDerivedNodeStats(minEdgeCount, maxEdgeCount,
-		// minLocationCount, maxLocationCount);
+		dbHelper.insertOrUpdateDerivedNodeStats(minEdgeCount, maxEdgeCount, minLocationCount, maxLocationCount);
 	}
 
-	/**
-	 * This method is used to find the max of edge count and max of location
-	 * count
-	 * 
-	 * @param type
-	 * @param list
-	 * @param l
-	 * @param r
-	 * @return
-	 */
 	public static int findMax(Type type, List<NodeStat> list, int l, int r) {
 		int max = Integer.MIN_VALUE;
 		if (Type.EdgeCount.value == type.value) {
@@ -158,17 +147,9 @@ public class FindLeftRightUsingMedian {
 		return max;
 	}
 
-	/**
-	 * This is divide and conquer algorithm eliminates the boundary nodes
-	 * 
-	 * @param list
-	 * @param l
-	 * @param r
-	 * @param type
-	 */
 	public static void findLeftRightUsingMeanAndMedian(List<NodeStat> list, int l, int r, Type type) {
 		while (l <= r) {
-			if (r - l <= 30000) {
+			if (r - l <= 8000) {
 				System.out.println("Final result is :");
 				System.out.println("l=(" + l + ") - " + list.get(l));
 				System.out.println("r=(" + r + ") - " + list.get(r));
@@ -197,16 +178,6 @@ public class FindLeftRightUsingMedian {
 		}
 	}
 
-	/**
-	 * This methods finds the mean of nodes in a 'list' from left 'l' to right
-	 * 'r' for the type 'type'
-	 * 
-	 * @param list
-	 * @param l
-	 * @param r
-	 * @param type
-	 * @return
-	 */
 	public static double mean(List<NodeStat> list, int l, int r, Type type) {
 		double sum = 0.0, mean = 0.0;
 		int n = r - l + 1;
@@ -224,17 +195,6 @@ public class FindLeftRightUsingMedian {
 		mean = (sum) / n;
 		return mean;
 	}
-
-	/**
-	 * This methods finds the median of nodes in a 'list' from left 'l' to right
-	 * 'r' for the type 'type'
-	 * 
-	 * @param list
-	 * @param l
-	 * @param r
-	 * @param type
-	 * @return
-	 */
 
 	public static int median(List<NodeStat> list, int l, int r, Type type) {
 		int n = r - l + 1;
@@ -261,18 +221,8 @@ public class FindLeftRightUsingMedian {
 			}
 		}
 	}
-	public static void main(String args[]) {
-		ReadFromDb dbHelper = new ReadFromDb();
-		insertOrUpdateDerivedNodeStats(dbHelper);
-		// assignRankToDerivedNodeStats(dbHelper);
-	}
-
 }
 
-/**
- * 
- * @author Raj This enum defines various attributes
- */
 enum Type {
 	EdgeCount(1), LocationCount(2), InfluenceEdgeCount(3), InfluenceLocationCount(4);
 	int value;

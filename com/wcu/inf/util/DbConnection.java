@@ -41,7 +41,7 @@ public class DbConnection {
 		Connection connection = null;
 
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/gowalla", "root", "apple");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/brightkite", "root", "apple");
 
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");

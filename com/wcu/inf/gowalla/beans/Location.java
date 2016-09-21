@@ -11,6 +11,14 @@ public class Location {
 	private int id;
 	private double latitude;
 	private double longitude;
+	private String location;
+
+	public Location(String location, double latitude, double longitude) {
+		super();
+		this.location = location;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
 
 	public Location(int id, double latitude, double longitude) {
 		super();
@@ -45,10 +53,8 @@ public class Location {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
+
+		return location.hashCode();
 	}
 
 	@Override
@@ -60,9 +66,17 @@ public class Location {
 		if (getClass() != obj.getClass())
 			return false;
 		Location other = (Location) obj;
-		if (id != other.id)
+		if (!location.equals(other.location))
 			return false;
 		return true;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Override

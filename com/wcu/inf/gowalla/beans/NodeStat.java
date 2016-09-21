@@ -14,6 +14,10 @@ public class NodeStat {
 	private int locationCount;
 	private int infEdgeCount;
 	private int infLocationCount;
+	private double infEdgePercent;
+	private double infLocationPercent;
+	private int edgerank;
+	private int locrank;
 
 	public NodeStat(int id) {
 		super();
@@ -27,7 +31,6 @@ public class NodeStat {
 		this.infLocationCount = infLocationCount;
 	}
 
-	
 	public NodeStat(int id, int edgeCount, int edgeOfEdgeCount, int locationCount, int infEdgeCount,
 			int infLocationCount) {
 		super();
@@ -37,6 +40,35 @@ public class NodeStat {
 		this.locationCount = locationCount;
 		this.infEdgeCount = infEdgeCount;
 		this.infLocationCount = infLocationCount;
+	}
+
+	public NodeStat(int id, int edgeCount, int edgeOfEdgeCount, int locationCount, int infEdgeCount,
+			int infLocationCount, double infEdgePercent, double infLocationPercent) {
+		super();
+		this.id = id;
+		this.edgeCount = edgeCount;
+		this.edgeOfEdgeCount = edgeOfEdgeCount;
+		this.locationCount = locationCount;
+		this.infEdgeCount = infEdgeCount;
+		this.infLocationCount = infLocationCount;
+		this.infEdgePercent = infEdgePercent;
+		this.infLocationPercent = infLocationPercent;
+	}
+
+	public double getInfEdgePercent() {
+		return infEdgePercent;
+	}
+
+	public void setInfEdgePercent(double infEdgePercent) {
+		this.infEdgePercent = infEdgePercent;
+	}
+
+	public double getInfLocationPercent() {
+		return infLocationPercent;
+	}
+
+	public void setInfLocationPercent(double infLocationPercent) {
+		this.infLocationPercent = infLocationPercent;
 	}
 
 	public int getId() {
@@ -63,7 +95,6 @@ public class NodeStat {
 		this.infLocationCount = infLocationCount;
 	}
 
-	
 	public int getEdgeCount() {
 		return edgeCount;
 	}
@@ -88,13 +119,30 @@ public class NodeStat {
 		this.locationCount = locationCount;
 	}
 
+	public int getEdgerank() {
+		return edgerank;
+	}
+
+	public void setEdgerank(int edgerank) {
+		this.edgerank = edgerank;
+	}
+
+	public int getLocrank() {
+		return locrank;
+	}
+
+	public void setLocrank(int locrank) {
+		this.locrank = locrank;
+	}
+
 	@Override
 	public String toString() {
 		return "NodeStat [id=" + id + ", edgeCount=" + edgeCount + ", edgeOfEdgeCount=" + edgeOfEdgeCount
 				+ ", locationCount=" + locationCount + ", infEdgeCount=" + infEdgeCount + ", infLocationCount="
-				+ infLocationCount + "]";
+				+ infLocationCount + ", infEdgePercent=" + infEdgePercent + ", infLocationPercent=" + infLocationPercent
+				+ ", edgerank=" + edgerank + ", locrank=" + locrank + "]";
 	}
 
-	
+
 
 }
